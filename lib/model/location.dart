@@ -5,6 +5,6 @@ class Location {
   final String name;
   final String url;
   final List<LocationFact> facts;
-  Location();
+  //removed empty Location() constructor
   Location(this.name, this.url, this.facts);
 }

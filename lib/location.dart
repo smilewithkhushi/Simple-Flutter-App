@@ -4,7 +4,7 @@ import 'model/location.dart';
 class locationDetail extends StatelessWidget {
   final Location location;
 
-  locationDetail(this.location);
+  const locationDetail({required this.location}); //added const, required keyword and curly braces around location
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +18,18 @@ class locationDetail extends StatelessWidget {
                   const Color.fromARGB(255, 96, 174, 238)),
               section("Heading 2", "body 2", Color.fromARGB(255, 23, 156, 92)),
               section("Heading 3", "body 3", Color.fromARGB(255, 224, 39, 86)),
-              _renderFacts(location);
+              ..._renderFacts(location), //added spread operator (ChatGPT suggestion)
             ]));
   }
 }
 
 List<Widget> _renderFacts(Location location){
-  var result = List <Widget>();
+  var result = List <Widget>.empty(growable: true); //added var keyword and growable: true because null safety
   for (int i=0; i<location.facts.length; i++){
-    result.add(_sectionTitle(location.facts[i].title))
-    result.add(_sectionText(location.facts[i].title))
+    result.add(_sectionTitle(location.facts[i].title));
+    result.add(_sectionText(location.facts[i].title));
   }
+  return result; //added return statement
 }
 Widget _sectionTitle (String text){
   return Text(text);
